@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #7a7776,
+    #f5e6c8
+  );
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* Card */
+.card {
+  background: #f5e6c8;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #33190e;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #33190e;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #33190e;
+  color: #fcf9f5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #4a2415;
+}
+
+/* Precio */
+.info {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Error */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
