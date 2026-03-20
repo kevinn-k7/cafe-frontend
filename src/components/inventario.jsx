@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
-import { FaBox, FaPlus } from 'react-icons/fa';
+import { FaBox, FaPlus, FaMinus } from 'react-icons/fa';
 
 function Inventario() {
 
@@ -24,6 +24,7 @@ function Inventario() {
     });
   };
 
+  // 🔼 AGREGAR STOCK
   const agregarStock = async (id) => {
     try {
       const cantidad = Number(cantidades[id]);
@@ -46,6 +47,33 @@ function Inventario() {
 
     } catch (error) {
       console.error(error);
+      alert('Error al agregar stock');
+    }
+  };
+
+  // 🔽 NUEVO → QUITAR STOCK
+  const quitarStock = async (id) => {
+    try {
+      const cantidad = Number(cantidades[id]);
+
+      if (!cantidad || cantidad <= 0) {
+        alert('Cantidad inválida');
+        return;
+      }
+
+      await api.put(`/presentaciones/${id}/stock/reducir`, { cantidad });
+
+      alert('Stock reducido');
+
+      setCantidades({
+        ...cantidades,
+        [id]: ''
+      });
+
+      cargarInventario();
+
+    } catch (error) {
+      alert(error.response?.data?.error || 'Error al reducir stock');
     }
   };
 
@@ -66,8 +94,8 @@ function Inventario() {
             <tr>
               <th>Presentación</th>
               <th>Stock</th>
-              <th>Agregar</th>
-              <th></th>
+              <th>Cantidad</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
@@ -94,12 +122,19 @@ function Inventario() {
                   />
                 </td>
 
-                <td>
+                <td style={styles.actions}>
                   <button
                     onClick={() => agregarStock(p.id)}
-                    style={styles.button}
+                    style={styles.add}
                   >
                     <FaPlus />
+                  </button>
+
+                  <button
+                    onClick={() => quitarStock(p.id)}
+                    style={styles.remove}
+                  >
+                    <FaMinus />
                   </button>
                 </td>
 
@@ -161,11 +196,22 @@ const styles = {
     width: '80px'
   },
 
-  button: {
+  actions: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#33190e',
+    gap: '8px'
+  },
+
+  add: {
+    background: '#27ae60',
+    color: 'white',
+    border: 'none',
+    padding: '8px',
+    borderRadius: '6px',
+    cursor: 'pointer'
+  },
+
+  remove: {
+    background: '#c0392b',
     color: 'white',
     border: 'none',
     padding: '8px',

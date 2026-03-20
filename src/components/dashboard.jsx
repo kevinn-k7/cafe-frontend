@@ -95,7 +95,15 @@ function Dashboard() {
         <div style={styles.card}>
           <FaDollarSign style={styles.cardIcon} />
           <div>
-            <p>Ventas</p>
+            <p>Ventas Del Dia</p>
+            <h3>${data.ventas_hoy}</h3>
+          </div>
+        </div>
+
+        <div style={styles.card}>
+          <FaDollarSign style={styles.cardIcon} />
+          <div>
+            <p>Ventas Del Mes</p>
             <h3>${data.ventas_mes}</h3>
           </div>
         </div>
